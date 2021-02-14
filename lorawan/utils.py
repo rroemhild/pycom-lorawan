@@ -14,8 +14,8 @@ def lora_erase():
     lora.nvram_erase()
 
 
-def generate_keys(prefix=b"7079636f"):
-    app_eui = prefix + ubinascii.hexlify(crypto.getrandbits(32))
+def generate_keys(prefix="7079636f"):
+    app_eui = ubinascii.hexlify(crypto.getrandbits(32))  # last 8 bytes
     app_key = ubinascii.hexlify(crypto.getrandbits(128))
-    print("AppEUI: {}".format(app_eui.decode()))
+    print("AppEUI: {}{}".format(prefix, app_eui.decode()))
     print("AppKey: {}".format(app_key.decode()))
